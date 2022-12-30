@@ -18,6 +18,9 @@ a{
 h4{
     margin: 0;
 }
+h1{
+    margin-left: 1rem
+}
 .container{
     margin: 0;
  }
@@ -34,9 +37,11 @@ h4{
     background-color: var(--color-black-alpha-01);
 
  }
+
 .wrapper{
     width: fit-content;
 }
+
 .grid-container{  
     margin-left: 1rem;
     margin-right: 1rem;
@@ -66,7 +71,7 @@ h4{
     padding: 5px;
     position: absolute;
     flex-wrap: nowrap;
-    transform: translate(-70px, 70px);
+    transform: translate(-40px, 70px);
  }
  .dropdown-flag{
     display: flex;
@@ -155,7 +160,13 @@ h4{
     flex-direction: column;
     background-color: rgba(240, 240, 240, 0.5);
     width: 300px; 
+    height: 100%;
+    justify-content: space-between;
     height: 100vh;
+ }
+ .sidebar-container{
+    height: fit-content;
+
  }
 
 .sidebar-section.close{
@@ -191,9 +202,25 @@ h4{
     padding: 5px;
  }
 
- .sidebar-section .title{
+.sidebar-section .title{
     margin-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
  }
+.section-mode{
+    height: 20px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    background-color: azure;
+}
+.icon-change.active{
+    animation: animateSunbar 1s forwards;
+}
+.icon-change{
+    animation: animateNightbar 1s forwards;
+}
 
 .wrapper-container{
     margin: 2rem;
@@ -261,6 +288,7 @@ h4{
     display: flex;
     padding: 10px;
     margin: 10px;
+    cursor: pointer;
 }
 
 .item-sidebar.open{
@@ -302,7 +330,63 @@ h4{
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.ml-1{
+    margin-left: 1rem;
+}
+.mx-1{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.notification-content{
+    width: 390px;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    align-self: center;
+    transform: translate(-300px, 55px);
+}
+.item{
+    display: flex;
+}
+.dropdown-content-profile{
+    width: 70px;
+    height: 50px;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+.img-dropdown{
+    border-radius: 9999px;
+}
+.item-message{
+    width: fit-content;
+    padding: 0.5rem;
+}
+.d-flex{
+    display: flex;
+}
+.date{
+    font-size: 12px;
+    font-weight: lighter;
+}
+.flex-column{
+    flex-direction: column;
+}
+.content-message{
+    font-size: 12px;
+    font-weight: lighter;
+    display: flex;
+    text-align: right;
+    justify-content: end;
+}
+.user-content{
+    display: contents;
+}
 
+.hover-container{
+    z-index: 1000;
+    padding: 1rem;
+    background-color: azure;
+}
 
 @keyframes openIconSidebar{
     0% { transform: translate(50px, 0) rotate(180deg);}
@@ -321,4 +405,97 @@ h4{
 @keyframes closeSidebar{
     0% { width: 300px; }
     100% { width: 65px; }
+}
+@keyframes animateSunbar{
+    0% { transform: translate(0px, 0); }
+    100% { transform: translate(33px, 0); }
+}
+@keyframes animateNightbar{
+    0% { transform: translate(33px, 0); }
+    100% { transform: translate(0px, 0); }
+}
+
+@media screen and (max-width:600px) {
+    .h-content{
+        display: none;
+    }
+    .container-flag{
+        width: fit-content;
+        margin: 0 5px 0 5px;
+        padding: 0 5px 0 5px;
+    }
+    .h-notification{
+        display: none;
+    }
+    .dropdown-notification{
+        margin: 0 5px 0 5px;
+        padding: 0 5px 0 5px;
+    }
+    .sidebar-section{
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(240, 240, 240, 0.5);
+        width: 65px; 
+        height: 100vh;
+        animation: closeSidebar 1s forwards;
+     }
+     .close-sidebar{
+        display: none;
+     }
+     .title{
+        display: none;
+        font-size: 14px;
+        font-weight: 500;
+     }
+     .sidebar-header{
+        margin: 0px;
+        align-items: center;
+        justify-content: center;
+     }
+     .header-icon{
+        height: 0;
+        width: 0
+        ;
+     }
+}
+@media screen and (max-width:800px) {
+    .h-content{
+        display: none;
+    }
+    .container-flag{
+        width: fit-content;
+        margin: 0 5px 0 5px;
+        padding: 0 5px 0 5px;
+    }
+    .h-notification{
+        display: none;
+    }
+    .dropdown-notification{
+        margin: 0 5px 0 5px;
+        padding: 0 5px 0 5px;
+    }
+    .sidebar-section{
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(240, 240, 240, 0.5);
+        width: 65px; 
+        height: 100vh;
+        animation: closeSidebar 1s forwards;
+     }
+     .close-sidebar{
+        display: none;
+     }
+     .title{
+        display: none;
+     }
+     .sidebar-header{
+        margin: 0px;
+        align-items: center;
+        justify-content: center;
+     }
+     .header-icon{
+        height: 0;
+        width: 0;
+     }
+
 }

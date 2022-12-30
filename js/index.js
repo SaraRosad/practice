@@ -1,12 +1,14 @@
 
 document.addEventListener('DOMContentLoaded', function(e){
     e.preventDefault(); 
-
+   
     var title = document.querySelectorAll('.title');
     var sidebarItem = document.querySelectorAll('.item-sidebar');
     var sidebarClose = document.querySelector('.close-sidebar');
     var sidebarSection = document.querySelector('.sidebar-section');
     var sidebarHeader = document.querySelector('.sidebar-header');
+    var count = 0;
+    var hover = false;
     sidebarClose.addEventListener('click', function(e){
 
         if(!sidebarClose.classList.contains('close') && sidebarClose.classList.contains('open')){
@@ -30,10 +32,12 @@ document.addEventListener('DOMContentLoaded', function(e){
         sidebarHeader.classList.add('align-center');
         sidebarHeader.classList.remove('align-left');
         sidebarClose.classList.remove('rotated'); 
+        sidebarHeader.classList.remove('ml-1');
     }
     function closeSidebar(){
         sidebarClose.classList.remove('close');
         sidebarClose.classList.add('open');
+        sidebarClose.classList.add('rotated'); 
         title.forEach(element => {
             element.classList.remove('hidden');
         });
@@ -44,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function(e){
         sidebarSection.classList.remove('close');
         sidebarHeader.classList.remove('align-center');
         sidebarHeader.classList.add('align-left');
-        sidebarClose.classList.add('rotated');    
+        sidebarHeader.classList.add('ml-1');
+           
     }
 
     var profile = document.querySelector('.profile-img');
@@ -64,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function(e){
     var dropdownLang = document.querySelector('.dropdown-lang');
 
     var content_flag = document.querySelector('.dropdown-flag');
-    var dropdown_item = document.querySelectorAll('.dropdown-item');
+    var dropdown_item = document.querySelectorAll('.dropdown-flag .dropdown-item');
 
     dropdownLang.addEventListener('click', function(e){
         e.preventDefault();
@@ -88,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function(e){
         });
     });
    
-
+/* 
    const ctx = document.getElementById('chart-line');
 
    new Chart(ctx, {
@@ -135,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function(e){
    
 
    new Chart(ctx2, config);
-   
+    */
 
     function slideUp(el){
         var elem = document.querySelector(el);
@@ -158,7 +163,115 @@ document.addEventListener('DOMContentLoaded', function(e){
             slideUp('.dropdown-flag');
             content_flag.classList.add('hidden');
         }
-       
+        if(!target.classList.contains('img-effect')){
+            dropdownProfile.classList.add('hidden');
+        }
+        if(!target.classList.contains('fa-bell')){
+            content_notification.classList.add('hidden');
+        }
+        if(!target.classList.contains('h-notifications')){
+            content_notification.classList.add('hidden');
+        }
+    
     });
+
+    var dropdownNotification = document.querySelector('.dropdown-notification');
+
+    var content_notification = document.querySelector('.notification-content');
+
+    dropdownNotification.addEventListener('click', function(e){
+        e.preventDefault();
+        
+        if(!content_notification.classList.contains('hidden')){
+            slideUp('.notification-content');
+            content_notification.classList.add('hidden');
+        }else{
+            content_notification.classList.remove('hidden');
+            slideDown('.notification-content');
+        }
+    });
+
+    var changeMode = document.querySelector('.icon-change');
+
+    changeMode.addEventListener('click', function(e){
+        e.preventDefault();
+        if(!changeMode.classList.contains('active')){
+            changeMode.classList.add('active');
+            changeIcon(true);
+        }else{
+            changeMode.classList.remove('active');
+            changeIcon(false);
+        }
+    });
+
+    function changeIcon(change){
+        var newIcon = '<i class="fa fa-moon"></i>';
+        var lastIcon = '<i class="fa fa-sun"></i>';
+        changeMode.innerHTML = '';
+        change == true ?  changeMode.innerHTML = newIcon :  changeMode.innerHTML = lastIcon; 
+    }
+
+    function changeDirectionleft(){
+        let id = null;
+        const elem = document.getElementById("icon-change");
+        let pos = 0;
+        id = setInterval(frame, 5);
+        function frame(){
+            if(pos = 33){
+                clearInterval(id);
+            }else{
+                pos++;
+                elem.style.left = pos + 'px';
+            }
+        }
+    }
+    function changeDirectionRight(){
+        let id = null;
+        const elem = document.getElementById("icon-change");
+        let pos = 0;
+        id = setInterval(frame, 5);
+        function frame(){
+            if(pos = 33){
+                clearInterval(id);
+            }else{
+                pos++;
+                elem.style.right = pos + 'px';
+            }
+        }
+    }
+
+    document.addEventListener('mouseover', function(e){
+        e.preventDefault();
+        hoverItem(e);
+    });
+
+    function hoverItem(e){
+
+        var target = e.target;
+        var sidebarItem = document.querySelector('.item-sidebar');
+   /*    
+        console.log(count); */
+       
+        if(count == 1 && hover){
+            setTimeout(()=>{
+                var divElement = document.querySelector('.hover-container');
+                divElement.remove(); 
+            },100);
+            
+            count = 0;
+        }
+        if(target.classList.contains('title')){
+            var divElement = document.createElement('div');
+            divElement.classList.add('hover-container');
+            divElement.innerHTML = 'hover';
+            target.parentNode.append(divElement); 
+            count++;
+            hover = true;
+        }
+
+        
+        
+    
+    }
 
 });
